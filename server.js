@@ -39,12 +39,24 @@ db.query('SELECT * FROM candidates WHERE id = 1', (err, row) => {
 });
 
 // Delete a candidate
-db.query('DELETE FROM candidates WHERE id = ?', 1, (err, result) => {
-    if (err) {
-        console.log(err);
-    }
-    console.log(result);
-});
+// db.query('DELETE FROM candidates WHERE id = ?', 1, (err, result) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     console.log(result);
+// });
+
+// create new candidate
+const sql = `INSERT INTO candidates (id, first_name, last_name, industry_connected)
+    VALUES (?, ?, ?, ?)`;
+    const params = [1, 'Ronald', 'Firbank', 1];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        console.log(result);
+    });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
